@@ -1,7 +1,7 @@
 # Личный проект «Киноман» [![Build status][travis-image]][travis-url]
 
 * Студент: [Роман Кичатов](https://up.htmlacademy.ru/ecmascript/9/user/467439).
-* Наставник: `Неизвестно`.
+* Наставник: `Владимир Якушкин`.
 
 ---
 
