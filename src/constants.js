@@ -87,45 +87,29 @@ const FILM_CARD_DIRECTORS = [
 ];
 
 const FILM_CARD_WRITERS = [
-  [
-    `Stephen King`,
-    `Frank Darabont`
-  ],
-  [
-    `Mario Puzo`,
-    `Francis Ford Coppola`
-  ],
-  [
-    `Jonathan Nolan`,
-    `Christopher Nolan`
-  ],
-  [
-    `Quentin Tarantino`,
-    `Roger Avary`
-  ]
+  `Stephen King`,
+  `Frank Darabont`,
+  `Mario Puzo`,
+  `Francis Ford Coppola`,
+  `Jonathan Nolan`,
+  `Christopher Nolan`,
+  `Quentin Tarantino`,
+  `Roger Avary`
 ];
 
 const FILM_CARD_ACTORS = [
-  [
-    `Tim Robbins`,
-    `Morgan Freeman`,
-    `Bob Gunton`
-  ],
-  [
-    `Marlon Brando`,
-    `Al Pacino`,
-    `James Caan`
-  ],
-  [
-    `Christian Bale`,
-    `Heath Ledger`,
-    `Aaron Eckhart`
-  ],
-  [
-    `John Travolta`,
-    `Uma Thurman`,
-    `Samuel L. Jackson`
-  ]
+  `Tim Robbins`,
+  `Morgan Freeman`,
+  `Bob Gunton`,
+  `Marlon Brando`,
+  `Al Pacino`,
+  `James Caan`,
+  `Christian Bale`,
+  `Heath Ledger`,
+  `Aaron Eckhart`,
+  `John Travolta`,
+  `Uma Thurman`,
+  `Samuel L. Jackson`
 ];
 
 const FILM_CARD_COUNTRIES = [
@@ -150,12 +134,8 @@ const FILM_CARD_COMMENT_COUNT = {
   max: 10,
 };
 
-const FILM_CARD_DESCRIPTION_COUNT = {
-  min: 1,
-  max: 3,
-};
-
-const FILM_CARD_GENRE_COUNT = {
+const FILM_CARD_PARAMETR_COUNT = 3;
+const FILM_CARD_PARAMETRS_COUNT = {
   min: 1,
   max: 3,
 };
@@ -182,7 +162,7 @@ export {
   FILM_CARD_COUNTRIES,
   FILM_CARD_AGE_RATINGS,
   FILM_CARD_COMMENT_COUNT,
-  FILM_CARD_DESCRIPTION_COUNT,
-  FILM_CARD_GENRE_COUNT,
+  FILM_CARD_PARAMETR_COUNT,
+  FILM_CARD_PARAMETRS_COUNT,
   FILM_CARD_COUNT,
 };
