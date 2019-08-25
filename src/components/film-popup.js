@@ -50,14 +50,15 @@ export const createFilmPopupTemplate = ({poster, title, originalTitle, rating, d
                 <td class="film-details__cell">${country}</td>
               </tr>
               <tr class="film-details__row">
-                <td class="film-details__term">${genres > 1 ? `Genres` : `Genre`}</td>
+                <td class="film-details__term">${genres.length > 1 ? `Genres` : `Genre`}</td>
                 <td class="film-details__cell">
-                  ${Array.from(genres).map((genre) => `<span class="film-details__genre">${genre}</span>`).join(``)}</td>
+                  ${Array.from(genres).map((genre) => `<span class="film-details__genre">${genre}</span>`).join(``)}
+                </td>
               </tr>
             </table>
 
             <p class="film-details__film-description">
-              ${description}
+              ${description.join(` `)}
             </p>
           </div>
         </div>
