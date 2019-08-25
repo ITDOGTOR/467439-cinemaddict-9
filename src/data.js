@@ -12,11 +12,11 @@ import {
   FILM_CARD_COUNTRIES,
   FILM_CARD_AGE_RATINGS,
   FILM_CARD_COMMENT_COUNT,
-  FILM_CARD_DESCRIPTION_COUNT,
-  FILM_CARD_GENRE_COUNT,
-  FILM_CARD_COUNT
+  FILM_CARD_PARAMETR_COUNT,
+  FILM_CARD_PARAMETRS_COUNT,
+  FILM_CARD_COUNT,
 } from '../src/constants.js';
-import {getRandomArrayElement, getRandomBoolean, getRandomInt} from '../src/util.js';
+import {getRandomArrayElement, getRandomBoolean, getRandomArrayElements, getRandomInt} from '../src/util.js';
 
 const getFilmCard = () => ({
   poster: getRandomArrayElement(FILM_CARD_POSTERS),
@@ -25,13 +25,13 @@ const getFilmCard = () => ({
   rating: getRandomArrayElement(FILM_CARD_RATINGS),
   userRating: ``,
   director: getRandomArrayElement(FILM_CARD_DIRECTORS),
-  writers: getRandomArrayElement(FILM_CARD_WRITERS),
-  actors: getRandomArrayElement(FILM_CARD_ACTORS),
+  writers: getRandomArrayElements(FILM_CARD_WRITERS, FILM_CARD_PARAMETR_COUNT),
+  actors: getRandomArrayElements(FILM_CARD_ACTORS, FILM_CARD_PARAMETR_COUNT),
   releaseDate: getRandomArrayElement(FILM_CARD_YEARS),
   duration: getRandomArrayElement(FILM_CARD_DURATIONS),
   country: getRandomArrayElement(FILM_CARD_COUNTRIES),
-  genres: Array.from(Array(getRandomInt(FILM_CARD_GENRE_COUNT))).map(() => getRandomArrayElement(FILM_CARD_GENRES)),
-  description: Array.from(Array(getRandomInt(FILM_CARD_DESCRIPTION_COUNT))).map(() => getRandomArrayElement(FILM_CARD_DESCRIPTIONS)).join(` `),
+  genres: getRandomArrayElements(FILM_CARD_GENRES, getRandomInt(FILM_CARD_PARAMETRS_COUNT)),
+  description: getRandomArrayElements(FILM_CARD_DESCRIPTIONS, getRandomInt(FILM_CARD_PARAMETRS_COUNT)),
   ageRating: getRandomArrayElement(FILM_CARD_AGE_RATINGS),
   comments: getRandomInt(FILM_CARD_COMMENT_COUNT),
   isWatchlist: getRandomBoolean(),
@@ -42,15 +42,15 @@ const getFilmCard = () => ({
 const films = Array.from(Array(getRandomInt(FILM_CARD_COUNT))).map(getFilmCard);
 
 const getRankProfile = (rank) => {
-  if (rank > 0 && rank <= 10) {
+  if (rank === 0) {
+    return ``;
+  } else if (rank <= 10) {
     return `Novice`;
-  } else if (rank > 10 && rank <= 20) {
+  } else if (rank <= 20) {
     return `Fan`;
-  } else if (rank > 21) {
-    return `Movie Buff`;
   }
 
-  return ``;
+  return `Movie Buff`;
 };
 
 const filters = [
@@ -81,4 +81,4 @@ const filters = [
   },
 ];
 
-export {films, getRankProfile, filters};
+export {films, getRankProfile, filters, getFilmCard};
