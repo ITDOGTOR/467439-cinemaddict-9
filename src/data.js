@@ -44,9 +44,11 @@ const films = Array.from(Array(getRandomInt(FILM_CARD_COUNT))).map(getFilmCard);
 const getRankProfile = (rank) => {
   if (rank === 0) {
     return ``;
-  } else if (rank <= 10) {
+  }
+  if (rank <= 10) {
     return `Novice`;
-  } else if (rank <= 20) {
+  }
+  if (rank <= 20) {
     return `Fan`;
   }
 
