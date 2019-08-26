@@ -8,7 +8,7 @@ export const createFilmCardTemplate = ({title, rating, releaseDate, duration, ge
       <span class="film-card__genre">${genre[0]}</span>
     </p>
     <img src="./images/posters/${poster}" alt="" class="film-card__poster">
-    <p class="film-card__description">${description}</p>
+    <p class="film-card__description">${description.join(` `)}</p>
     <a class="film-card__comments">${comments} comments</a>
     <form class="film-card__controls">
       <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist ${isWatchlist ? `film-card__controls-item--active` : ``}">Add to watchlist</button>
