@@ -1,45 +1,53 @@
 import {
-  FILM_CARD_TITLES,
-  FILM_CARD_RATINGS,
-  FILM_CARD_YEARS,
-  FILM_CARD_DURATIONS,
-  FILM_CARD_GENRES,
-  FILM_CARD_POSTERS,
-  FILM_CARD_DESCRIPTIONS,
-  FILM_CARD_DIRECTORS,
-  FILM_CARD_WRITERS,
-  FILM_CARD_ACTORS,
-  FILM_CARD_COUNTRIES,
-  FILM_CARD_AGE_RATINGS,
-  FILM_CARD_COMMENT_COUNT,
-  FILM_CARD_PARAMETR_COUNT,
-  FILM_CARD_PARAMETRS_COUNT,
+  TITLES,
+  RATINGS,
+  YEARS,
+  DURATIONS,
+  GENRES,
+  POSTERS,
+  DESCRIPTIONS,
+  DIRECTORS,
+  WRITERS,
+  ACTORS,
+  COUNTRIES,
+  AGE_RATINGS,
+  COMMENTATORS,
+  COMMENTS,
+  EMOTIONS,
+  COMMENT_COUNT,
+  PARAMETER_COUNT,
   FILM_CARD_COUNT,
 } from '../src/constants.js';
 import {getRandomArrayElement, getRandomBoolean, getRandomArrayElements, getRandomInt} from '../src/util.js';
 
-const getFilmCard = () => ({
-  poster: getRandomArrayElement(FILM_CARD_POSTERS),
-  title: getRandomArrayElement(FILM_CARD_TITLES),
-  originalTitle: getRandomArrayElement(FILM_CARD_TITLES),
-  rating: getRandomArrayElement(FILM_CARD_RATINGS),
-  userRating: ``,
-  director: getRandomArrayElement(FILM_CARD_DIRECTORS),
-  writers: getRandomArrayElements(FILM_CARD_WRITERS, FILM_CARD_PARAMETR_COUNT),
-  actors: getRandomArrayElements(FILM_CARD_ACTORS, FILM_CARD_PARAMETR_COUNT),
-  releaseDate: getRandomArrayElement(FILM_CARD_YEARS),
-  duration: getRandomArrayElement(FILM_CARD_DURATIONS),
-  country: getRandomArrayElement(FILM_CARD_COUNTRIES),
-  genres: getRandomArrayElements(FILM_CARD_GENRES, getRandomInt(FILM_CARD_PARAMETRS_COUNT)),
-  description: getRandomArrayElements(FILM_CARD_DESCRIPTIONS, getRandomInt(FILM_CARD_PARAMETRS_COUNT)),
-  ageRating: getRandomArrayElement(FILM_CARD_AGE_RATINGS),
-  comments: getRandomInt(FILM_CARD_COMMENT_COUNT),
-  isWatchlist: getRandomBoolean(),
-  isWatched: getRandomBoolean(),
-  isFavorites: getRandomBoolean(),
+const getComment = () => ({
+  commentator: getRandomArrayElement(COMMENTATORS),
+  comment: getRandomArrayElement(COMMENTS),
+  emotion: getRandomArrayElement(EMOTIONS),
+  commentDate: Date.now(),
 });
 
-const films = Array.from(Array(getRandomInt(FILM_CARD_COUNT))).map(getFilmCard);
+const getFilmCard = () => ({
+  poster: getRandomArrayElement(POSTERS),
+  title: getRandomArrayElement(TITLES),
+  originalTitle: getRandomArrayElement(TITLES),
+  rating: getRandomArrayElement(RATINGS),
+  director: getRandomArrayElement(DIRECTORS),
+  writers: getRandomArrayElements(WRITERS, PARAMETER_COUNT.default),
+  actors: getRandomArrayElements(ACTORS, PARAMETER_COUNT.default),
+  releaseDate: getRandomArrayElement(YEARS),
+  duration: getRandomArrayElement(DURATIONS),
+  country: getRandomArrayElement(COUNTRIES),
+  genres: getRandomArrayElements(GENRES, getRandomInt(PARAMETER_COUNT)),
+  description: getRandomArrayElements(DESCRIPTIONS, getRandomInt(PARAMETER_COUNT)).join(` `),
+  ageRating: getRandomArrayElement(AGE_RATINGS),
+  comments: Array.from(Array(getRandomInt(COMMENT_COUNT))).map(getComment),
+  inWatchlist: getRandomBoolean(),
+  isWatched: getRandomBoolean(),
+  isFavorite: getRandomBoolean(),
+});
+
+const filmsList = Array.from(Array(getRandomInt(FILM_CARD_COUNT))).map(getFilmCard);
 
 const getRankProfile = (rank) => {
   if (rank === 0) {
@@ -55,7 +63,9 @@ const getRankProfile = (rank) => {
   return `Movie Buff`;
 };
 
-const filters = [
+const getFilterCount = (callback) => filmsList.filter((it) => callback(it)).length;
+
+const filtersList = [
   {
     id: `all`,
     title: `All movies`,
@@ -64,17 +74,17 @@ const filters = [
   {
     id: `watchlist`,
     title: `Watchlist`,
-    count: films.filter((it) => it.isWatchlist).length
+    count: getFilterCount((it) => it.inWatchlist),
   },
   {
     id: `history`,
     title: `History`,
-    count: films.filter((it) => it.isWatched).length
+    count: getFilterCount((it) => it.isWatched),
   },
   {
     id: `favorites`,
     title: `Favorites`,
-    count: films.filter((it) => it.isFavorites).length
+    count: getFilterCount((it) => it.isFavorite),
   },
   {
     id: `stats`,
@@ -83,4 +93,4 @@ const filters = [
   },
 ];
 
-export {films, getRankProfile, filters, getFilmCard};
+export {filmsList, getRankProfile, filtersList};
