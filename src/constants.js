@@ -1,4 +1,4 @@
-const FILM_CARD_TITLES = [
+const TITLES = [
   `The Shawshank Redemption`,
   `The Godfather`,
   `The Dark Knight`,
@@ -16,7 +16,7 @@ const FILM_CARD_TITLES = [
   `Léon`
 ];
 
-const FILM_CARD_RATINGS = [
+const RATINGS = [
   `9.3`,
   `9.2`,
   `9.0`,
@@ -26,14 +26,14 @@ const FILM_CARD_RATINGS = [
   `8.6`
 ];
 
-const FILM_CARD_YEARS = [
+const YEARS = [
   `14 October 1994`,
   `24 March 1972`,
   `14 August 2008`,
   `29 September 1995`
 ];
 
-const FILM_CARD_DURATIONS = [
+const DURATIONS = [
   `2h 22m`,
   `2h 55m`,
   `2h 32m`,
@@ -44,7 +44,7 @@ const FILM_CARD_DURATIONS = [
   `3h 9m`
 ];
 
-const FILM_CARD_GENRES = [
+const GENRES = [
   `Drama`,
   `Crime`,
   `Action`,
@@ -56,7 +56,7 @@ const FILM_CARD_GENRES = [
   `Comedy`
 ];
 
-const FILM_CARD_POSTERS = [
+const POSTERS = [
   `made-for-each-other.png`,
   `popeye-meets-sinbad.png`,
   `sagebrush-trail.jpg`,
@@ -66,7 +66,7 @@ const FILM_CARD_POSTERS = [
   `the-man-with-the-golden-arm.jpg`
 ];
 
-const FILM_CARD_DESCRIPTIONS = [
+const DESCRIPTIONS = [
   `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
   `Cras aliquet varius magna, non porta ligula feugiat eget.`,
   `Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra.`,
@@ -79,14 +79,14 @@ const FILM_CARD_DESCRIPTIONS = [
   `In rutrum ac purus sit amet tempus.`
 ];
 
-const FILM_CARD_DIRECTORS = [
+const DIRECTORS = [
   `Frank Darabont`,
   `Francis Ford Coppola`,
   `Christopher Nolan`,
   `Quentin Tarantino`
 ];
 
-const FILM_CARD_WRITERS = [
+const WRITERS = [
   `Stephen King`,
   `Frank Darabont`,
   `Mario Puzo`,
@@ -97,7 +97,7 @@ const FILM_CARD_WRITERS = [
   `Roger Avary`
 ];
 
-const FILM_CARD_ACTORS = [
+const ACTORS = [
   `Tim Robbins`,
   `Morgan Freeman`,
   `Bob Gunton`,
@@ -112,7 +112,7 @@ const FILM_CARD_ACTORS = [
   `Samuel L. Jackson`
 ];
 
-const FILM_CARD_COUNTRIES = [
+const COUNTRIES = [
   `USA`,
   `Russia`,
   `France`,
@@ -121,7 +121,7 @@ const FILM_CARD_COUNTRIES = [
   `Germany`
 ];
 
-const FILM_CARD_AGE_RATINGS = [
+const AGE_RATINGS = [
   18,
   6,
   0,
@@ -129,40 +129,71 @@ const FILM_CARD_AGE_RATINGS = [
   8
 ];
 
-const FILM_CARD_COMMENT_COUNT = {
+const COMMENTATORS = [
+  `Джон Уик`,
+  `Альфа Самка`,
+  `Юрий Музыченко`,
+  `Тилль Линдеманн`,
+  `Курт Кобейн`,
+  `Жора Крыжовников`
+];
+
+const COMMENTS = [
+  `Это ШЕДЕВРРРРРР!`,
+  `Какое унылое и скучное дерьмище!!!`,
+  `Какой ДЦП это снимал???`,
+  `Фильм атстой. Пайду лучши в майнкрафт паиграю`,
+  `С позиции десятилетнего кинокритика, могу сказать что этот фильм действительно неплох. Отличная актёрская игра. Живое окружение. У этого режиссёра уже выходили отличные фильмы, но этот, венец его творения. 10/10`,
+  `Моя оценка 6, не больше.`
+];
+
+const EMOTIONS = [
+  `smile`,
+  `sleeping`,
+  `puke`,
+  `angry`
+];
+
+const COMMENT_COUNT = {
   min: 0,
   max: 10,
 };
 
-const FILM_CARD_PARAMETR_COUNT = 3;
-const FILM_CARD_PARAMETRS_COUNT = {
+const PARAMETER_COUNT = {
   min: 1,
   max: 3,
+  default: 3,
 };
 
 const FILM_CARD_COUNT = {
-  min: 5,
+  min: 0,
   max: 50,
-  firstRender: 5,
+  render: 5,
   extraRender: 2,
-  moreRender: 5,
 };
 
+const MAX_SYMBOLS_DESCRIPTION = 140;
+const PERMISSION_SYMBOLS_DESCRIPTION = 139;
+
 export {
-  FILM_CARD_TITLES,
-  FILM_CARD_RATINGS,
-  FILM_CARD_YEARS,
-  FILM_CARD_DURATIONS,
-  FILM_CARD_GENRES,
-  FILM_CARD_POSTERS,
-  FILM_CARD_DESCRIPTIONS,
-  FILM_CARD_DIRECTORS,
-  FILM_CARD_WRITERS,
-  FILM_CARD_ACTORS,
-  FILM_CARD_COUNTRIES,
-  FILM_CARD_AGE_RATINGS,
-  FILM_CARD_COMMENT_COUNT,
-  FILM_CARD_PARAMETR_COUNT,
-  FILM_CARD_PARAMETRS_COUNT,
+  TITLES,
+  RATINGS,
+  YEARS,
+  DURATIONS,
+  GENRES,
+  POSTERS,
+  DESCRIPTIONS,
+  DIRECTORS,
+  WRITERS,
+  ACTORS,
+  COUNTRIES,
+  AGE_RATINGS,
+  COMMENTATORS,
+  COMMENTS,
+  EMOTIONS,
+  COMMENT_COUNT,
+  PARAMETER_COUNT,
   FILM_CARD_COUNT,
+  MAX_SYMBOLS_DESCRIPTION,
+  PERMISSION_SYMBOLS_DESCRIPTION
 };
