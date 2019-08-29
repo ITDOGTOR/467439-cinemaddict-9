@@ -9,6 +9,7 @@ import FilmCard from '../src/components/film-card.js';
 import FilmPopup from '../src/components/film-popup.js';
 import Comment from '../src/components/comment.js';
 import ShowMoreButton from '../src/components/show-more-button.js';
+import NoFilms from '../src/components/no-films.js';
 
 import {filmsList, filtersList, getRankProfile} from '../src/data.js';
 import {FILM_CARD_COUNT} from '../src/constants.js';
@@ -81,18 +82,26 @@ const renderMainComponents = () => {
   renderFilters(filtersList);
   renderElement(main, new Sorting().getElement());
 
+  if (!copyFilms.length) {
+    renderElement(main, new NoFilms().getElement());
+    return;
+  }
+
   const filmsMainContainer = new FilmsContainer();
   renderElement(main, filmsMainContainer.getElement());
 
   const allFilmsContainer = filmsMainContainer.getElement().querySelector(`#all-films`);
   const topRatedFilmsContainer = filmsMainContainer.getElement().querySelector(`#top-rated`);
   const mostCommentedFilmsContainer = filmsMainContainer.getElement().querySelector(`#most-commented`);
+  const filmsListContainer = main.querySelector(`.films-list`);
+
+  if (copyFilms.length > render) {
+    renderElement(filmsListContainer, new ShowMoreButton().getElement());
+  }
+
   renderFilms(allFilmsContainer, copyFilms, render);
   renderFilms(topRatedFilmsContainer, copyFilmsTopRated, extraRender);
   renderFilms(mostCommentedFilmsContainer, copyFilmsMostCommented, extraRender);
-
-  const filmsListContainer = main.querySelector(`.films-list`);
-  renderElement(filmsListContainer, new ShowMoreButton().getElement());
 };
 
 renderMainComponents();
@@ -110,4 +119,6 @@ const onMoreFilms = () => {
 const allFilmsContainer = document.querySelector(`#all-films`);
 const showMoreButton = document.querySelector(`.films-list__show-more`);
 
-showMoreButton.addEventListener(`click`, onMoreFilms);
+if (showMoreButton) {
+  showMoreButton.addEventListener(`click`, onMoreFilms);
+}
