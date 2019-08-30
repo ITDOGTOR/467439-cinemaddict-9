@@ -1,3 +1,8 @@
+const Key = {
+  ESCAPE_IE: `Escape`,
+  ESCAPE: `Esc`,
+};
+
 const Position = {
   AFTERBEGIN: `afterbegin`,
   BEFOREEND: `beforeend`
@@ -31,4 +36,4 @@ const getRandomArrayElement = (array) => array[Math.floor((Math.random() * array
 const getRandomArrayElements = (array, elementCount) => array.slice().sort(() => Math.random() - 0.5).slice(0, elementCount);
 const getRandomBoolean = () => Boolean(Math.random() > 0.5);
 
-export {getRandomInt, getRandomArrayElement, getRandomArrayElements, getRandomBoolean, createElement, renderElement, unrenderElement, Position};
+export {getRandomInt, getRandomArrayElement, getRandomArrayElements, getRandomBoolean, createElement, renderElement, unrenderElement, Key, Position};
