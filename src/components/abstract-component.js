@@ -1,8 +1,12 @@
 import {createElement, unrenderElement} from '../util.js';
 
-export default class Sorting {
+export default class AbstractComponent {
   constructor() {
     this._element = null;
+
+    if (new.target === AbstractComponent) {
+      throw new Error(`Can't instantiate AbstractComponent, only concrete one.`);
+    }
   }
 
   getElement() {
@@ -19,10 +23,6 @@ export default class Sorting {
   }
 
   getTemplate() {
-    return `<ul class="sort">
-      <li><a href="#" class="sort__button sort__button--active">Sort by default</a></li>
-      <li><a href="#" class="sort__button">Sort by date</a></li>
-      <li><a href="#" class="sort__button">Sort by rating</a></li>
-    </ul>`;
+    throw new Error(`Abstract method not implemented: getTemplate`);
   }
 }

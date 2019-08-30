@@ -1,22 +1,9 @@
-import {createElement, unrenderElement} from '../util.js';
+import AbstractComponent from '../components/abstract-component.js';
 
-export default class AllFilms {
+export default class AllFilms extends AbstractComponent {
   constructor(filmsCount) {
+    super();
     this._filmsCount = filmsCount;
-    this._element = null;
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    unrenderElement(this._element);
-    this._element = null;
   }
 
   getTemplate() {

@@ -1,7 +1,8 @@
-import {createElement, unrenderElement} from '../util.js';
+import AbstractComponent from '../components/abstract-component.js';
 
-export default class FilmPopup {
+export default class FilmPopup extends AbstractComponent {
   constructor({poster, title, originalTitle, rating, director, writers, actors, releaseDate, duration, country, genres, description, ageRating, comments, inWatchlist, isWatched, isFavorite}) {
+    super();
     this._poster = poster;
     this._title = title;
     this._originalTitle = originalTitle;
@@ -19,20 +20,6 @@ export default class FilmPopup {
     this._inWatchlist = inWatchlist;
     this._isWatched = isWatched;
     this._isFavorite = isFavorite;
-    this._element = null;
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    unrenderElement(this._element);
-    this._element = null;
   }
 
   getTemplate() {
