@@ -1,25 +1,12 @@
-import {createElement, unrenderElement} from '../util.js';
+import AbstractComponent from '../components/abstract-component.js';
 
-export default class Comment {
+export default class Comment extends AbstractComponent {
   constructor({commentator, comment, emotion, commentDate}) {
+    super();
     this._commentator = commentator;
     this._comment = comment;
     this._emotion = emotion;
     this._commentDate = new Date(commentDate);
-    this._element = null;
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    unrenderElement(this._element);
-    this._element = null;
   }
 
   getTemplate() {

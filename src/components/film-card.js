@@ -1,8 +1,10 @@
-import {MAX_SYMBOLS_DESCRIPTION, PERMISSION_SYMBOLS_DESCRIPTION} from '../constants.js';
-import {createElement, unrenderElement} from '../util.js';
+import AbstractComponent from '../components/abstract-component.js';
 
-export default class FilmCard {
+import {MAX_SYMBOLS_DESCRIPTION, PERMISSION_SYMBOLS_DESCRIPTION} from '../constants.js';
+
+export default class FilmCard extends AbstractComponent {
   constructor({title, rating, releaseDate, duration, genres: genre, poster, description, comments, inWatchlist, isWatched, isFavorite}) {
+    super();
     this._title = title;
     this._rating = rating;
     this._releaseDate = releaseDate;
@@ -14,20 +16,6 @@ export default class FilmCard {
     this._inWatchlist = inWatchlist;
     this._isWatched = isWatched;
     this._isFavorite = isFavorite;
-    this._element = null;
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    unrenderElement(this._element);
-    this._element = null;
   }
 
   getTemplate() {

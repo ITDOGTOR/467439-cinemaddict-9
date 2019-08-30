@@ -1,24 +1,11 @@
-import {createElement, unrenderElement} from '../util.js';
+import AbstractComponent from '../components/abstract-component.js';
 
-export default class Filter {
+export default class Filter extends AbstractComponent {
   constructor({id, title, count}) {
+    super();
     this._id = id;
     this._title = title;
     this._count = count;
-    this._element = null;
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    unrenderElement(this._element);
-    this._element = null;
   }
 
   getTemplate() {
