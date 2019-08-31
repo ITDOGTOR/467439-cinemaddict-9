@@ -27,10 +27,10 @@ const RATINGS = [
 ];
 
 const YEARS = [
-  `14 October 1994`,
-  `24 March 1972`,
-  `14 August 2008`,
-  `29 September 1995`
+  782092800,
+  70243200,
+  1218672000,
+  812332800
 ];
 
 const DURATIONS = [
