@@ -10,7 +10,7 @@ export default class FilmPopup extends AbstractComponent {
     this._director = director;
     this._writers = writers;
     this._actors = actors;
-    this._releaseDate = releaseDate;
+    this._releaseDate = new Date(releaseDate).toDateString();
     this._duration = duration;
     this._country = country;
     this._genres = genres;
