@@ -32,6 +32,7 @@ const getFilmCard = () => ({
   title: getRandomArrayElement(TITLES),
   originalTitle: getRandomArrayElement(TITLES),
   rating: getRandomArrayElement(RATINGS),
+  userRating: 0,
   director: getRandomArrayElement(DIRECTORS),
   writers: getRandomArrayElements(WRITERS, PARAMETER_COUNT.default),
   actors: getRandomArrayElements(ACTORS, PARAMETER_COUNT.default),
