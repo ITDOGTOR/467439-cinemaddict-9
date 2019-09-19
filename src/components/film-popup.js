@@ -1,3 +1,4 @@
+import moment from 'moment';
 import AbstractComponent from '../components/abstract-component.js';
 
 import {USER_RATINGS} from '../constants.js';
@@ -14,7 +15,7 @@ export default class FilmPopup extends AbstractComponent {
     this._director = director;
     this._writers = writers;
     this._actors = actors;
-    this._releaseDate = new Date(releaseDate).toDateString();
+    this._releaseDate = releaseDate;
     this._duration = duration;
     this._country = country;
     this._genres = genres;
@@ -109,7 +110,7 @@ export default class FilmPopup extends AbstractComponent {
                 </tr>
                 <tr class="film-details__row">
                   <td class="film-details__term">Release Date</td>
-                  <td class="film-details__cell">${this._releaseDate}</td>
+                  <td class="film-details__cell">${moment(this._releaseDate).format(`DD MMMM YYYY`)}</td>
                 </tr>
                 <tr class="film-details__row">
                   <td class="film-details__term">Runtime</td>

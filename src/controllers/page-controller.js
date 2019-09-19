@@ -96,7 +96,6 @@ export default class PageController {
 
     const getSortedFilms = (callback) => {
       const sortedFilms = this._films.slice().sort((a, b) => callback(a, b));
-      this._renderShowMoreButton(sortedFilms);
       this._renderFilms(this._allFilmsList.getElement().querySelector(`.films-list__container`), sortedFilms, this._visibleFilms);
       this._unrenderedFilms = sortedFilms;
     };

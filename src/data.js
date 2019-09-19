@@ -18,13 +18,13 @@ import {
   PARAMETER_COUNT,
   FILM_CARD_COUNT,
 } from '../src/constants.js';
-import {getRandomArrayElement, getRandomBoolean, getRandomArrayElements, getRandomInt} from '../src/util.js';
+import {getRandomArrayElement, getRandomDate, getRandomBoolean, getRandomArrayElements, getRandomInt} from '../src/util.js';
 
 const getComment = () => ({
   commentator: getRandomArrayElement(COMMENTATORS),
   comment: getRandomArrayElement(COMMENTS),
   emotion: getRandomArrayElement(EMOTIONS),
-  commentDate: Date.now(),
+  commentDate: getRandomDate(),
 });
 
 const getFilmCard = () => ({
