@@ -1,33 +1,15 @@
-import AllFilms from '../src/components/all-films.js';
-import Search from '../src/components/search.js';
-import Profile from '../src/components/profile.js';
-import MainNavigation from '../src/components/main-navigation.js';
-import Filter from '../src/components/filter.js';
-import PageController from '../src/controllers/page-controller.js';
+import HeaderController from '../src/controllers/header-controller.js';
+import MainController from '../src/controllers/main-controller.js';
+import FooterController from '../src/controllers/footer-controller.js';
 
-import {filmsList, filtersList, getRankProfile} from '../src/data.js';
-import {renderElement} from '../src/util.js';
+import {filmsData} from '../src/data.js';
 
-const copyFilms = filmsList.slice();
-
-const renderFilter = (filter) => {
-  const filterElement = new Filter(filter);
-  const filtersContainer = main.querySelector(`.main-navigation`);
-
-  renderElement(filtersContainer, filterElement.getElement());
+const onDataChange = (films) => {
+  copyFilmsData = films;
 };
 
-const renderFilters = (filters) => filters.forEach((filter) => renderFilter(filter));
+let copyFilmsData = filmsData.slice();
 
-const header = document.querySelector(`.header`);
-const main = document.querySelector(`.main`);
-const footer = document.querySelector(`.footer`);
-const rankProfile = getRankProfile(copyFilms.filter((it) => it.isWatched).length);
-
-renderElement(header, new Search().getElement());
-renderElement(header, new Profile(rankProfile).getElement());
-renderElement(footer, new AllFilms(filmsList.length).getElement());
-renderElement(main, new MainNavigation().getElement());
-renderFilters(filtersList);
-const pageController = new PageController(main, copyFilms);
-pageController.init();
+const headerController = new HeaderController(copyFilmsData);
+const mainController = new MainController(copyFilmsData, onDataChange);
+const footerController = new FooterController(copyFilmsData);

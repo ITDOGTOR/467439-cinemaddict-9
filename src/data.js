@@ -32,7 +32,7 @@ const getFilmCard = () => ({
   title: getRandomArrayElement(TITLES),
   originalTitle: getRandomArrayElement(TITLES),
   rating: getRandomArrayElement(RATINGS),
-  userRating: 0,
+  userRating: null,
   director: getRandomArrayElement(DIRECTORS),
   writers: getRandomArrayElements(WRITERS, PARAMETER_COUNT.default),
   actors: getRandomArrayElements(ACTORS, PARAMETER_COUNT.default),
@@ -48,7 +48,7 @@ const getFilmCard = () => ({
   isFavorite: getRandomBoolean(),
 });
 
-const filmsList = Array.from(Array(getRandomInt(FILM_CARD_COUNT))).map(getFilmCard);
+const filmsData = Array.from(Array(getRandomInt(FILM_CARD_COUNT))).map(getFilmCard);
 
 const getRankProfile = (rank) => {
   if (rank === 0) {
@@ -64,7 +64,7 @@ const getRankProfile = (rank) => {
   return `Movie Buff`;
 };
 
-const getFilterCount = (callback) => filmsList.filter((it) => callback(it)).length;
+const getFilterCount = (callback) => filmsData.filter((it) => callback(it)).length;
 
 const filtersList = [
   {
@@ -94,4 +94,4 @@ const filtersList = [
   },
 ];
 
-export {filmsList, getRankProfile, filtersList};
+export {filmsData, getRankProfile, filtersList};

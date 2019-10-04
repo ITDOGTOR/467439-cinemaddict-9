@@ -1,6 +1,6 @@
 import AbstractComponent from '../components/abstract-component.js';
 
-export default class AllFilms extends AbstractComponent {
+export default class Footer extends AbstractComponent {
   constructor(filmsCount) {
     super();
     this._filmsCount = filmsCount;

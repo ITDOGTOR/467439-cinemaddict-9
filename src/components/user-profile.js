@@ -1,6 +1,6 @@
-import AbstractComponent from '../components/abstract-component.js';
+import AbstractComponent from './abstract-component.js';
 
-export default class Profile extends AbstractComponent {
+export default class UserProfile extends AbstractComponent {
   constructor(rank) {
     super();
     this._rank = rank;

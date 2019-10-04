@@ -1,4 +1,5 @@
 import moment from 'moment';
+
 import AbstractComponent from '../components/abstract-component.js';
 
 import {MAX_SYMBOLS_DESCRIPTION, PERMISSION_SYMBOLS_DESCRIPTION} from '../constants.js';
