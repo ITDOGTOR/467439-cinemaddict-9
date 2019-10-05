@@ -11,6 +11,24 @@ export default class UserController {
     this._init();
   }
 
+  update(updatedFilmData) {
+    this._userProfile.removeElement();
+
+    this._updateUserData(updatedFilmData);
+  }
+
+  _updateUserData(updatedFilmData) {
+    this._filmsData = updatedFilmData;
+
+    this._updateView(this._filmsData);
+  }
+
+  _updateView(updatedFilmData) {
+    this._userProfile = new UserProfile(getRankUser(updatedFilmData));
+
+    renderElement(this._container, this._userProfile.getElement());
+  }
+
   _init() {
     renderElement(this._container, this._userProfile.getElement());
   }

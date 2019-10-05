@@ -33,11 +33,18 @@ export default class FilmsController {
     this._init();
   }
 
+  hide() {
+    this._topRatedFilmsList.removeElement();
+    this._mostCommentedFilmsList.removeElement();
+    this._showMoreButton.removeElement();
+  }
+
   update(updatedFilmsData) {
     this._mainFilmsList.removeElement();
     this._topRatedFilmsList.removeElement();
     this._mostCommentedFilmsList.removeElement();
     this._showMoreButton.removeElement();
+    this._noFilms.removeElement();
 
     this._updateData(updatedFilmsData);
   }

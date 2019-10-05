@@ -13,6 +13,17 @@ export default class MenuController {
     this._init();
   }
 
+  show() {
+    if (this._menu.getElement().classList.contains(`visually-hidden`)) {
+      this._menu.getElement().classList.remove(`visually-hidden`);
+    }
+  }
+
+  hide() {
+    this._menu.getElement().classList.add(`visually-hidden`);
+    removeActiveClassElements(this._menu, `main-navigation__item`, true);
+  }
+
   update(updatedFilmsData) {
     this._menu.removeElement();
 

@@ -15,6 +15,17 @@ export default class SortController {
     this._init();
   }
 
+  show() {
+    if (this._sort.getElement().classList.contains(`visually-hidden`)) {
+      this._sort.getElement().classList.remove(`visually-hidden`);
+    }
+  }
+
+  hide() {
+    this._sort.getElement().classList.add(`visually-hidden`);
+    removeActiveClassElements(this._sort, `sort__button`, true);
+  }
+
   setDefaultView() {
     removeActiveClassElements(this._sort, `sort__button`, true);
   }
