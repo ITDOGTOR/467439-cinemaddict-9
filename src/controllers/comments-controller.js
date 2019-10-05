@@ -28,5 +28,20 @@ export default class CommentsController {
     this._comments.getElement().querySelector(`.film-details__comment-input`).addEventListener(`blur`, () => {
       this._onFocusChange(false);
     });
+
+    this._comments.getElement().querySelector(`.film-details__emoji-list`).addEventListener(`change`, this._onEmojiSelect.bind(this));
+  }
+
+  _onEmojiSelect(evt) {
+    const emotionImg = this._container.querySelector(`.film-details__add-emoji-label img`);
+
+    if (evt.target.tagName !== `INPUT`) {
+      return;
+    }
+
+    emotionImg.classList.remove(`visually-hidden`);
+
+    emotionImg.src = `./images/emoji/${evt.target.value}.png`;
+    emotionImg.alt = `${evt.target.value}`;
   }
 }

@@ -64,34 +64,4 @@ const getRankProfile = (rank) => {
   return `Movie Buff`;
 };
 
-const getFilterCount = (callback) => filmsData.filter((it) => callback(it)).length;
-
-const filtersList = [
-  {
-    id: `all`,
-    title: `All movies`,
-    count: ``
-  },
-  {
-    id: `watchlist`,
-    title: `Watchlist`,
-    count: getFilterCount((it) => it.inWatchlist),
-  },
-  {
-    id: `history`,
-    title: `History`,
-    count: getFilterCount((it) => it.isWatched),
-  },
-  {
-    id: `favorites`,
-    title: `Favorites`,
-    count: getFilterCount((it) => it.isFavorite),
-  },
-  {
-    id: `stats`,
-    title: `Stats`,
-    count: ``
-  },
-];
-
-export {filmsData, getRankProfile, filtersList};
+export {filmsData, getRankProfile};
