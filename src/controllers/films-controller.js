@@ -86,6 +86,10 @@ export default class FilmsController {
     this._renderShowMoreButton();
   }
 
+  onMenuDataChange() {
+    this._renderShowMoreButton();
+  }
+
   _init() {
     renderElement(this._container, this._filmsContainer.getElement());
     renderElement(this._filmsContainer.getElement(), this._mainFilmsList.getElement());
