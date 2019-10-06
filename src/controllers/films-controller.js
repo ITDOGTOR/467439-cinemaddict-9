@@ -39,6 +39,14 @@ export default class FilmsController {
     this._showMoreButton.removeElement();
   }
 
+  allHide() {
+    this._filmsContainer.getElement().classList.add(`visually-hidden`);
+  }
+
+  allShow() {
+    this._filmsContainer.getElement().classList.remove(`visually-hidden`);
+  }
+
   update(updatedFilmsData) {
     this._mainFilmsList.removeElement();
     this._topRatedFilmsList.removeElement();

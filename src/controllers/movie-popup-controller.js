@@ -20,7 +20,7 @@ export default class MoviePopupController {
 
     this._moviePopupRatingRatingController = new MoviePopupRatingController(this._filmPopup.getElement().querySelector(`.form-details__middle-container`), this._userRatingContainer, this._filmData, this._onDataChange, this._onControlWatchedChange.bind(this));
 
-    this._commentsController = new CommentsController(this._filmPopup.getElement().querySelector(`.film-details__inner`), this._filmData.comments, this._onFocusChange.bind(this));
+    this._commentsController = new CommentsController(this._filmPopup.getElement().querySelector(`.film-details__inner`), this._filmData, this._onFocusChange.bind(this), this._onDataChange);
 
     this._onEscKeyDown = this._onEscKeyDown.bind(this);
 

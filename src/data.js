@@ -46,6 +46,7 @@ const getFilmCard = () => ({
   inWatchlist: getRandomBoolean(),
   isWatched: getRandomBoolean(),
   isFavorite: getRandomBoolean(),
+  watchingDate: getRandomDate(),
 });
 
 const filmsData = Array.from(Array(getRandomInt(FILM_CARD_COUNT))).map(getFilmCard);

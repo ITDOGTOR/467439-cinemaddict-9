@@ -3,6 +3,7 @@ import moment from 'moment';
 import AbstractComponent from '../components/abstract-component.js';
 
 import {MAX_SYMBOLS_DESCRIPTION, PERMISSION_SYMBOLS_DESCRIPTION} from '../constants.js';
+import {getDurationFilmFromMinutes} from '../util.js';
 
 export default class FilmCard extends AbstractComponent {
   constructor({title, rating, releaseDate, duration, genres: genre, poster, description, comments, inWatchlist, isWatched, isFavorite}) {
@@ -26,7 +27,7 @@ export default class FilmCard extends AbstractComponent {
       <p class="film-card__rating">${this._rating}</p>
       <p class="film-card__info">
         <span class="film-card__year">${moment(this._releaseDate).format(`YYYY`)}</span>
-        <span class="film-card__duration">${this._duration}</span>
+        <span class="film-card__duration">${getDurationFilmFromMinutes(this._duration)}</span>
         <span class="film-card__genre">${this._genre[0]}</span>
       </p>
       <img src="./images/posters/${this._poster}" alt="" class="film-card__poster">
