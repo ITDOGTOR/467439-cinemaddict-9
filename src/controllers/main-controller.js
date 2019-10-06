@@ -87,7 +87,12 @@ export default class MainController {
   _onDataChange(newData, oldData) {
     const filmDataIndex = this._filmsData.findIndex((filmData) => filmData === oldData);
 
-    this._filmsData[filmDataIndex] = newData;
+    if (newData === null) {
+      this._filmsData = [...this._filmsData.slice(0, filmDataIndex), ...this._filmsData.slice(filmDataIndex + 1)];
+    } else {
+      this._filmsData[filmDataIndex] = newData;
+    }
+
     this._onDataChangeMain(this._filmsData);
   }
 }
