@@ -1,7 +1,8 @@
 import moment from 'moment';
+
 import AbstractComponent from '../components/abstract-component.js';
 
-import {USER_RATINGS} from '../constants.js';
+import {getDurationFilmFromMinutes} from '../util.js';
 
 export default class FilmPopup extends AbstractComponent {
   constructor({poster, title, originalTitle, rating, userRating, director, writers, actors, releaseDate, duration, country, genres, description, ageRating, comments, inWatchlist, isWatched, isFavorite}) {
@@ -71,7 +72,7 @@ export default class FilmPopup extends AbstractComponent {
                 </tr>
                 <tr class="film-details__row">
                   <td class="film-details__term">Runtime</td>
-                  <td class="film-details__cell">${this._duration}</td>
+                  <td class="film-details__cell">${getDurationFilmFromMinutes(this._duration)}</td>
                 </tr>
                 <tr class="film-details__row">
                   <td class="film-details__term">Country</td>

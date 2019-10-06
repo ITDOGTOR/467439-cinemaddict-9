@@ -63,10 +63,40 @@ const getRankUser = (filmsData) => {
   return `undefined`;
 };
 
+const getDurationFilmFromMinutes = (timeInMinutes, time = `all`) => {
+  const hours = Math.trunc(timeInMinutes / 60);
+  const minutes = timeInMinutes % 60;
+
+  if (time === `hours`) {
+    return hours;
+  }
+
+  if (time === `minutes`) {
+    return minutes;
+  }
+
+  return `${hours}h ${minutes}m`;
+};
+
+const getGenresCount = (filmsWatched) => {
+  const genres = !filmsWatched.length ? {0: 0} : filmsWatched.map((film) => film.genres).reduce((acc, genres) => acc.concat(genres))
+    .map((name) => {
+      return {
+        count: 1,
+        name,
+      };
+    }).reduce((acc, genre) => {
+      acc[genre.name] = (acc[genre.name] || 0) + genre.count;
+      return acc;
+    }, {});
+
+  return genres;
+};
+
 const getRandomInt = ({min, max}) => Math.floor(Math.random() * (max - min + 1)) + min;
 const getRandomArrayElement = (array) => array[Math.floor((Math.random() * array.length) + 0)];
 const getRandomArrayElements = (array, elementCount) => array.slice().sort(() => Math.random() - 0.5).slice(0, elementCount);
 const getRandomDate = () => Date.now() + 1 + Math.floor(Math.random() * 7) * 24 * 60 * 60 * 1000;
 const getRandomBoolean = () => Boolean(Math.random() > 0.5);
 
-export {getRandomInt, getRandomArrayElement, getRandomArrayElements, getRandomDate, getRandomBoolean, createElement, renderElement, unrenderElement, removeActiveClassElements, getRankUser, Key, Position};
+export {getRandomInt, getRandomArrayElement, getRandomArrayElements, getRandomDate, getRandomBoolean, createElement, renderElement, unrenderElement, removeActiveClassElements, getRankUser, getDurationFilmFromMinutes, getGenresCount, Key, Position};

@@ -23,7 +23,8 @@ export default class PageController {
 
   _onDataChange(films) {
     this._copyFilmsData = films;
-    this._headerController.update(films);
+    this._headerController.update(this._copyFilmsData);
+    this._mainController.updateAll(this._copyFilmsData);
   }
 
   _onSearchDataChange(filmsFound, searchingMode) {
