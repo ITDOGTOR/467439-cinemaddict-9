@@ -59,7 +59,7 @@ export default class API {
       .then(toJSON);
   }
 
-  deleteComment({id}) {
+  deleteComment(id) {
     return this._load({
       url: `comments/${id}`,
       method: Method.DELETE
