@@ -70,12 +70,8 @@ export default class MoviePopupControlsController {
 
     this._onControlEvent(evt.target.id);
     this._onDataChange(`update`, updatedFilmData[evt.target.id](), `popup`);
-
-    if (!this._filmData.userDetails.alreadyWatched) {
-      this._onDataChange(`delete-rating`, this._filmData, ``);
-    } else {
-      this._onDataChange(`update-rating`, this._filmData, ``);
-    }
+    this._onDataChange(!this._filmData.userDetails.alreadyWatched ?
+      `delete-rating` : `update-rating`, this._filmData, ``);
 
     this._block();
   }

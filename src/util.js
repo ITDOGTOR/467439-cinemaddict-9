@@ -12,6 +12,13 @@ export const Position = {
   AFTEREND: `afterend`,
 };
 
+const UserRank = {
+  NO_RANK: 0,
+  NOVICE: 10,
+  FAN: 20,
+  MOVIE_BUFF: 21
+};
+
 export const PageGlobalSetting = {
   AUTHORIZATION: `Basic frg88a9dZgfwjHdKvLcsO46=${Math.random()}`,
   END_POINT: `https://htmlacademy-es-9.appspot.com/cinemaddict`,
@@ -72,16 +79,16 @@ export const removeActiveClassElements = (element, className, defaultState = fal
 export const getUserRank = (filmsData) => {
   const watchedFilmsList = filmsData.filter(({userDetails}) => userDetails.alreadyWatched).length;
 
-  if (watchedFilmsList === 0) {
+  if (watchedFilmsList === UserRank.NO_RANK) {
     return ``;
   }
-  if (watchedFilmsList <= 10) {
+  if (watchedFilmsList <= UserRank.NOVICE) {
     return `Novice`;
   }
-  if (watchedFilmsList <= 20) {
+  if (watchedFilmsList <= UserRank.FAN) {
     return `Fan`;
   }
-  if (watchedFilmsList >= 21) {
+  if (watchedFilmsList >= UserRank.MOVIE_BUFF) {
     return `Movie Buff`;
   }
 
@@ -120,26 +127,42 @@ export const getGenresCount = (filmsWatched) => {
 };
 
 export const getSortedFilmsData = (filmsData, sortType) => {
-  const sortedFilmsList = {
-    'default': () => filmsData,
-    'date': () => filmsData.slice().sort((a, b) => moment(b.filmInfo.release.date) -
-      moment(a.filmInfo.release.date)),
-    'rating': () => filmsData.slice().sort((a, b) => b.filmInfo.totalRating - a.filmInfo.totalRating)
-  };
+  let sortedFilmsData;
 
-  return sortedFilmsList[sortType]();
+  switch (sortType) {
+    case `default`:
+      sortedFilmsData = filmsData;
+      break;
+    case `date`:
+      sortedFilmsData = filmsData.slice().sort((a, b) => moment(b.filmInfo.release.date) - moment(a.filmInfo.release.date));
+      break;
+    case `rating`:
+      sortedFilmsData = filmsData.slice().sort((a, b) => b.filmInfo.totalRating - a.filmInfo.totalRating);
+      break;
+  }
+
+  return sortedFilmsData;
 };
 
 export const getFilteredFilmsData = (filmsData, filterType) => {
-  const filteredFilmsList = {
-    'all': () => filmsData,
-    'watchlist': () => filmsData.filter(({userDetails}) => userDetails.watchlist),
-    'history': () => filmsData.filter(({userDetails}) => userDetails.alreadyWatched),
-    'favorites': () => filmsData.filter(({userDetails}) => userDetails.favorite),
-    'stats': () => filmsData
-  };
+  let filteredFilmsData;
 
-  return filteredFilmsList[filterType]();
+  switch (filterType) {
+    case `all`:
+      filteredFilmsData = filmsData;
+      break;
+    case `watchlist`:
+      filteredFilmsData = filmsData.filter(({userDetails}) => userDetails.watchlist);
+      break;
+    case `history`:
+      filteredFilmsData = filmsData.filter(({userDetails}) => userDetails.alreadyWatched);
+      break;
+    case `favorites`:
+      filteredFilmsData = filmsData.filter(({userDetails}) => userDetails.favorite);
+      break;
+  }
+
+  return filteredFilmsData;
 };
 
 export const setNoFilmsText = (state) => {

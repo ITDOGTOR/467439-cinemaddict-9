@@ -8,12 +8,17 @@ const Method = {
   DELETE: `DELETE`
 };
 
+export const ServerStatus = {
+  SUCCESS: 200,
+  REDIRECTION: 300
+};
+
 const checkStatus = (response) => {
-  if (response.status >= 200 && response.status < 300) {
+  if (response.status >= ServerStatus.SUCCESS && response.status < ServerStatus.REDIRECTION) {
     return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
   }
+
+  throw new Error(`${response.status}: ${response.statusText}`);
 };
 
 const toJSON = (response) => {

@@ -122,11 +122,7 @@ export default class MainController {
   }
 
   _onMenuEvent(menuItem) {
-    if (menuItem === `stats`) {
-      this._filterType = `all`;
-    } else {
-      this._filterType = menuItem;
-    }
+    this._filterType = menuItem === `stats` ? `all` : menuItem;
 
     if (menuItem !== `stats` && this._container.querySelector(`.statistic`)) {
       this._statisticController.hide();

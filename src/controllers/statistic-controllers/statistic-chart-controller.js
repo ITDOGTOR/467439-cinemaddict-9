@@ -92,11 +92,7 @@ export default class StatisticChartController {
               const meta = chartInstance.controller.getDatasetMeta(i);
               Chart.helpers.each(meta.data.forEach(function (bar, index) {
                 const data = dataset.data[index];
-                if (i === 0) {
-                  ctx.fillText(data, 150, bar._model.y + 4);
-                } else {
-                  ctx.fillText(data, bar._model.x - 28, bar._model.y + 4);
-                }
+                ctx.fillText(data, (i === 0) ? 150 : bar._model.x - 28, bar._model.y + 4);
               }));
             }), this);
           }
