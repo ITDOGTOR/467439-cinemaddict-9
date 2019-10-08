@@ -19,9 +19,9 @@ export default class MoviePopupController {
     this._filmPopup = new FilmPopup(this._filmData);
     this._userRatingContainer = this._filmPopup.getElement().querySelector(`.film-details__rating`);
 
-    this._moviePopupControlsController = new MoviePopupControlsController(this._filmPopup.getElement().querySelector(`.form-details__top-container`), this._filmData, this._onDataChange);
+    this._moviePopupControlsController = new MoviePopupControlsController(this._filmPopup.getElement().querySelector(`.form-details__top-container`), this._filmData, this._onDataChange, this._onControlEvent.bind(this), this._onControlsEvent.bind(this));
 
-    this._moviePopupRatingRatingController = new MoviePopupRatingController(this._filmPopup.getElement().querySelector(`.form-details__middle-container`), this._userRatingContainer, this._filmData, this._onDataChange);
+    this._moviePopupRatingController = new MoviePopupRatingController(this._filmPopup.getElement().querySelector(`.form-details__middle-container`), this._userRatingContainer, this._filmData, this._onDataChange);
 
     this._moviePopupCommentsController = new MoviePopupCommentsController(this._filmPopup.getElement().querySelector(`.film-details__inner`), this._filmData.id, this._onDataChange, this._onFocusEvent.bind(this));
 
@@ -35,15 +35,23 @@ export default class MoviePopupController {
   }
 
   updateUserRating(updatedFilmData) {
-    this._moviePopupRatingRatingController.updateView(updatedFilmData);
+    this._moviePopupRatingController.updateView(updatedFilmData);
   }
 
   deleteUserRating() {
-    this._moviePopupRatingRatingController.deleteView();
+    this._moviePopupRatingController.deleteView();
   }
 
   updateComments(updatedCommentsData) {
     this._moviePopupCommentsController.updateView(updatedCommentsData);
+  }
+
+  controlsReject() {
+    this._moviePopupControlsController.onError(this._filmData);
+  }
+
+  ratingReject() {
+    this._moviePopupRatingController.onError(this._filmData);
   }
 
   _init() {
@@ -78,5 +86,15 @@ export default class MoviePopupController {
     }
 
     document.addEventListener(`keydown`, this._onEscKeyDown);
+  }
+
+  _onControlsEvent() {
+    this._moviePopupRatingController.unblock();
+  }
+
+  _onControlEvent(itemControl) {
+    if (itemControl === `watched`) {
+      this._moviePopupRatingController.block();
+    }
   }
 }

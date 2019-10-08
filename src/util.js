@@ -141,3 +141,12 @@ export const getFilteredFilmsData = (filmsData, filterType) => {
 
   return filteredFilmsList[filterType]();
 };
+
+export const setNoFilmsText = (state) => {
+  const resultText = {
+    'loading': `Loading…`,
+    'no-films': `There is no movies for your request.`
+  };
+
+  return resultText[state];
+};

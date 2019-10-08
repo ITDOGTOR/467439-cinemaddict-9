@@ -1,14 +1,18 @@
 import API from '../../api/api.js';
 
+import NoFilms from '../../components/films-lists/no-films.js';
+
 import HeaderController from './header-controller.js';
 import MainController from './main-controller.js';
 import FooterController from './footer-controller.js';
 
-import {PageGlobalSetting} from '../../util.js';
+import {PageGlobalSetting, setNoFilmsText, renderElement} from '../../util.js';
 
 export default class PageController {
   constructor() {
     this._api = new API({endPoint: PageGlobalSetting.END_POINT, authorization: PageGlobalSetting.AUTHORIZATION});
+
+    this._noFilms = new NoFilms();
 
     this._headerController = null;
     this._mainController = null;
@@ -16,7 +20,10 @@ export default class PageController {
   }
 
   init() {
+    this._renderNoFilms(false, `loading`, document.querySelector(`.main`));
+
     this._api.getFilms().then((filmsData) => {
+      this._onLoadFilmsEvent(true);
       this._headerController = new HeaderController(filmsData, this._onSearchEvent.bind(this));
       this._mainController = new MainController(filmsData, this._onDataChange.bind(this));
       this._footerController = new FooterController(filmsData);
@@ -24,6 +31,20 @@ export default class PageController {
     });
   }
 
+  _renderNoFilms(remove = false, state = `no-result`, container) {
+    this._noFilms.removeElement();
+
+    if (remove) {
+      return;
+    }
+
+    this._noFilms = new NoFilms(setNoFilmsText(state));
+    renderElement(container, this._noFilms.getElement());
+  }
+
+  _onLoadFilmsEvent() {
+    this._renderNoFilms(true);
+  }
 
   _onSearchEvent(filmsFound, searchingMode) {
     this._mainController.showSearch(filmsFound, searchingMode);
@@ -53,7 +74,7 @@ export default class PageController {
                   this._mainController.updatePopupControls(filmData);
               }
             }))
-          .catch(() => console.log(`Error`));
+          .catch(() => this._mainController.rejectPopupControls());
         break;
       case `update-rating`:
         this._api.updateFilm({
@@ -69,7 +90,7 @@ export default class PageController {
                 this._mainController.updateFilmsList(filmsData);
                 this._mainController.updateExtraFilmsList(filmsData);
               }))
-            .catch(() => console.log(`Error`));
+            .catch(() => this._mainController.rejectPopupRating());
         break;
       case `delete-rating`:
         this._api.updateFilm({
@@ -85,7 +106,7 @@ export default class PageController {
                 this._mainController.updateFilmsList(filmsData);
                 this._mainController.updateExtraFilmsList(filmsData);
               }))
-            .catch(() => console.log(`Error`));
+            .catch(() => this._mainController.rejectPopupRating());
         break;
       case `create-comment`:
         this._api.createComment({
