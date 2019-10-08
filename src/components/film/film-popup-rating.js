@@ -27,7 +27,7 @@ export default class FilmPopupRating extends AbstractComponent {
           <p class="film-details__user-rating-feelings">How you feel it?</p>
 
           <div class="film-details__user-rating-score">
-            ${Array.from(PageGlobalSetting.PERSONAL_RATING_POINTS.END).map((rating, index) => `<input type="radio" name="score" class="film-details__user-rating-input visually-hidden" value="${index + PageGlobalSetting.PERSONAL_RATING_POINTS.START}" id="rating-${index + PageGlobalSetting.PERSONAL_RATING_POINTS.START}" ${index + PageGlobalSetting.PERSONAL_RATING_POINTS.START === this._personalRating ? `checked` : ``}>
+            ${new Array(PageGlobalSetting.PERSONAL_RATING_POINTS.END).fill().map((rating, index) => `<input type="radio" name="score" class="film-details__user-rating-input visually-hidden" value="${index + PageGlobalSetting.PERSONAL_RATING_POINTS.START}" id="rating-${index + PageGlobalSetting.PERSONAL_RATING_POINTS.START}" ${index + PageGlobalSetting.PERSONAL_RATING_POINTS.START === this._personalRating ? `checked` : ``}>
             <label class="film-details__user-rating-label" for="rating-${index + 1}">${index + 1}</label>`).join(``)}
           </div>
         </section>

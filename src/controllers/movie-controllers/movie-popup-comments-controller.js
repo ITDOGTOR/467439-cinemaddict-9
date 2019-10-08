@@ -53,6 +53,16 @@ export default class MoviePopupCommentsController {
     });
   }
 
+  _block() {
+    this._filmPopupCommentsContainer.getElement().style.opacity = `0.3`;
+    this._filmPopupComments.getElement().querySelector(`.film-details__comment-input`).disabled = true;
+  }
+
+  _blockDeleteButton(deleteButton) {
+    deleteButton.disabled = true;
+    deleteButton.textContent = `Deleting…`;
+  }
+
   _init() {
     renderElement(this._container, this._filmPopupCommentsContainer.getElement());
   }
@@ -76,12 +86,14 @@ export default class MoviePopupCommentsController {
     });
 
     this._onDataChange(`create-comment`, newComment, ``);
+    this._block();
   }
 
   _deleteComment(evt) {
     evt.preventDefault();
 
     this._onDataChange(`delete-comment`, parseInt(evt.target.dataset.idDelete, 10), this._filmDataByID);
+    this._blockDeleteButton(evt.target);
   }
 
   _onEmojiSelect(evt) {

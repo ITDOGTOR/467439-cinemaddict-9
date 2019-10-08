@@ -31,6 +31,22 @@ export default class MoviePopupRatingController {
     this._filmPopupUserRating.removeElement();
   }
 
+
+  block() {
+    this._filmPopupRating.getElement().style.opacity = `0.1`;
+    this._filmPopupRating.getElement().querySelectorAll(`.film-details__user-rating-input`).disabled = true;
+  }
+
+  unblock() {
+    this._filmPopupRating.getElement().style.opacity = `1`;
+    this._filmPopupRating.getElement().querySelectorAll(`.film-details__user-rating-input`).disabled = false;
+  }
+
+  onError(filmData) {
+    this.updateView(filmData);
+    this._filmPopupRating.getElement().style.animation = `shake ${600 / 1000}s`;
+  }
+
   _init() {
     if (this._filmData.userDetails.alreadyWatched) {
       renderElement(this._container, this._filmPopupRating.getElement());
@@ -64,6 +80,7 @@ export default class MoviePopupRatingController {
     }
 
     this._onDataChange(`update-rating`, this._filmData, ``);
+    this.block();
   }
 
   _onUndoButtonClick(evt) {
@@ -73,6 +90,7 @@ export default class MoviePopupRatingController {
     this._filmData.userDetails.alreadyWatched = false;
 
     this._onDataChange(`delete-rating`, this._filmData, ``);
+    this.block();
     document.querySelector(`#watched`).checked = false;
   }
 }

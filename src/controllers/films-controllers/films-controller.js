@@ -4,7 +4,7 @@ import ShowMoreButton from '../../components/button/show-more-button.js';
 
 import MovieController from '../movie-controllers/movie-controller.js';
 
-import {Position, PageGlobalSetting, renderElement, getSortedFilmsData, getFilteredFilmsData} from '../../util.js';
+import {Position, PageGlobalSetting, renderElement, getSortedFilmsData, getFilteredFilmsData, setNoFilmsText} from '../../util.js';
 
 export default class FilmsController {
   constructor(container, filmsData, onDataChange, openMoviePopupEvent) {
@@ -85,14 +85,14 @@ export default class FilmsController {
     renderElement(this._mainFilmsList.getElement(), this._showMoreButton.getElement());
   }
 
-  _renderNoFilms(remove = false) {
+  _renderNoFilms(remove = false, state = `no-films`) {
     this._noFilms.removeElement();
 
     if (remove) {
       return;
     }
 
-    this._noFilms = new NoFilms();
+    this._noFilms = new NoFilms(setNoFilmsText(state));
     renderElement(this._container, this._noFilms.getElement(), Position.AFTERBEGIN);
   }
 

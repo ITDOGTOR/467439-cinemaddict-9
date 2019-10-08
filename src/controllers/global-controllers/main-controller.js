@@ -9,7 +9,7 @@ import StatisticController from '../statistic-controllers/statistic-controller.j
 import MoviePopupController from '../movie-controllers/movie-popup-controller.js';
 import SearchResultController from '../search-controller/search-result-controller.js';
 
-import {renderElement, removeActiveClassElements} from '../../util.js';
+import {renderElement} from '../../util.js';
 
 export default class MainController {
   constructor(filmsData, onDataChange) {
@@ -73,6 +73,14 @@ export default class MainController {
 
   updatePopupComments(updatedCommentsData) {
     this._moviePopupController.updateComments(updatedCommentsData);
+  }
+
+  rejectPopupControls() {
+    this._moviePopupController.controlsReject();
+  }
+
+  rejectPopupRating() {
+    this._moviePopupController.ratingReject();
   }
 
   showSearch(filmsFound, searchingMode) {
